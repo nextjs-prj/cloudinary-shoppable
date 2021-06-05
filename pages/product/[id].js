@@ -18,7 +18,7 @@ export default function Product(params) {
     const cart = cartContext();
     const _cartFound = cart.find((_prdct) => _prdct.id == id);
     setInCart(_cartFound ? true : false);
-  });
+  }, []);
 
   function addToCart() {
     var state = window.localStorage.getItem("state");
