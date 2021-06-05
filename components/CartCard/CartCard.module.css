@@ -1,0 +1,45 @@
+.cartcard {
+  display: flex;
+  border-bottom: 1px solid rgba(232, 232, 2321);
+  padding-bottom: 12px;
+  margin: 20px 0;
+  cursor: pointer;
+}
+
+.cartcardimg {
+  width: 79px;
+  /*height: 50px;*/
+  background-color: darkgray;
+  margin-right: 11px;
+
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+.cartcarddetails {
+  display: flex;
+  flex-direction: column;
+}
+
+.cartcardname h3 {
+  margin-top: 0;
+  margin-bottom: 5px;
+}
+
+.cartcardprice {
+  color: darkgray;
+  padding: 2px 0;
+}
+
+.cartcardminidet {
+  font-weight: 100;
+}
+
+.cartcardminidet :nth-child(1) {
+  padding-right: 14px;
+}
+
+.cartcardminidet :nth-child(2) {
+  padding-right: 3px;
+}
