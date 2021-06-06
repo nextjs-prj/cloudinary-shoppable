@@ -7,7 +7,11 @@ export const CartContext = React.createContext(null);
 
 function MyApp({ Component, pageProps }) {
   const getCart = useCallback(() => {
-    return JSON.parse(window.localStorage.getItem("state"));
+    const state = window.localStorage.getItem("state");
+    if (state) {
+      return JSON.parse(state);
+    }
+    return [];
   });
 
   const addToCart = useCallback((product) => {
