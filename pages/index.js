@@ -9,13 +9,13 @@ import Link from "next/link";
 export default function Home() {
   const [cld, setCld] = useState();
   const [cart, setCart] = useState([]);
-  const cartContext = useContext(CartContext);
+  const { getCart } = useContext(CartContext);
 
   useEffect(() => {
     if (window.cloudinary) {
       var _cld = window.cloudinary.Cloudinary.new({ cloud_name: "demo" });
       setCld(_cld);
-      setCart(cartContext());
+      setCart(getCart());
     }
   }, []);
 

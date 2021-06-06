@@ -7,24 +7,28 @@ export const CartContext = React.createContext(null);
 
 function MyApp({ Component, pageProps }) {
   const getCart = useCallback(() => {
-    function _getCart() {
-      return JSON.parse(window.localStorage.getItem("state"));
-    }
-    return _getCart;
+    return JSON.parse(window.localStorage.getItem("state"));
   });
 
-  const setCart = useCallback(() => {
-    function _getCart() {
-      return JSON.parse(window.localStorage.getItem("state"));
+  const addToCart = useCallback((product) => {
+    var state = window.localStorage.getItem("state");
+    if (state) {
+      var arr = JSON.parse(state);
+      arr.push(product);
+      window.localStorage.setItem("state", JSON.stringify(arr));
+    } else {
+      var arr = [product];
+      window.localStorage.setItem("state", JSON.stringify(arr));
     }
-    return _getCart;
+    window.location.reload();
   });
 
-  const removeCart = useCallback(() => {
-    function _getCart() {
-      return JSON.parse(window.localStorage.getItem("state"));
-    }
-    return _getCart;
+  const removeFromCart = useCallback((product) => {
+    var state = window.localStorage.getItem("state");
+    var r = JSON.parse(state);
+    var remProducts = r.filter((_prduct) => _prduct.id != product?.id);
+    window.localStorage.setItem("state", JSON.stringify(remProducts));
+    window.location.reload();
   });
 
   return (
@@ -36,7 +40,7 @@ function MyApp({ Component, pageProps }) {
       </Head>
 
       <Header />
-      <CartContext.Provider value={getCart()}>
+      <CartContext.Provider value={{ getCart, addToCart, removeFromCart }}>
         <Component {...pageProps} />
       </CartContext.Provider>
     </>

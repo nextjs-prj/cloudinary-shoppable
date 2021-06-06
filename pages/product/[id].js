@@ -5,8 +5,8 @@ import { useEffect, useState, useContext } from "react";
 import { CartContext } from "./../_app";
 
 export default function Product(params) {
+  const { getCart, removeFromCart, addToCart } = useContext(CartContext);
   const [inCart, setInCart] = useState(false);
-  const cartContext = useContext(CartContext);
 
   const router = useRouter();
   const {
@@ -15,12 +15,16 @@ export default function Product(params) {
   const product = products_data.find((_product) => _product.id == id);
 
   useEffect(() => {
-    const cart = cartContext();
+    const cart = getCart();
     const _cartFound = cart.find((_prdct) => _prdct.id == id);
-    setInCart(_cartFound ? true : false);
-  }, []);
+    const inCart = _cartFound ? true : false;
+    setInCart(inCart);
+  });
 
-  function addToCart() {
+  function _addToCart() {
+    console.log("add");
+    addToCart(product);
+    /*
     var state = window.localStorage.getItem("state");
     if (state) {
       var arr = JSON.parse(state);
@@ -30,14 +34,18 @@ export default function Product(params) {
       var arr = [product];
       window.localStorage.setItem("state", JSON.stringify(arr));
     }
-    window.location.reload();
+    window.location.reload();*/
   }
 
-  function removeFromCart() {
+  function _removeFromCart() {
+    console.log("remocve");
+    removeFromCart(product);
+    /*
     const cart = cartContext();
     var remProducts = cart.filter((_prduct) => _prduct.id != id);
     window.localStorage.setItem("state", JSON.stringify(remProducts));
     window.location.reload();
+    */
   }
 
   return (
@@ -77,11 +85,11 @@ export default function Product(params) {
             <div style={{ padding: "14px 0" }}>
               <span>
                 {!inCart ? (
-                  <button className="btn" onClick={addToCart}>
+                  <button className="btn" onClick={_addToCart}>
                     Add to Cart
                   </button>
                 ) : (
-                  <button className="btn-danger" onClick={removeFromCart}>
+                  <button className="btn-danger" onClick={_removeFromCart}>
                     Remove from Cart
                   </button>
                 )}

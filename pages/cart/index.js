@@ -4,11 +4,11 @@ import { useContext, useEffect, useState } from "react";
 import CartCard from "./../../components/CartCard";
 
 export default function Cart() {
-  const cartContext = useContext(CartContext);
+  const { getCart } = useContext(CartContext);
   const [cart, setCart] = useState([]);
 
   useEffect(() => {
-    const cart = cartContext();
+    const cart = getCart();
     setCart(cart);
   });
 
