@@ -1,5 +1,6 @@
 var rafting = {
   shoppable: {
+    showPostPlayOverlay: true,
     transformation: {
       crop: "pad",
       aspect_ratio: "1",

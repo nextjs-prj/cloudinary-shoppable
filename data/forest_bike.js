@@ -1,5 +1,6 @@
 var forest_bike = {
   shoppable: {
+    showPostPlayOverlay: true,
     transformation: {
       crop: "pad",
       aspect_ratio: "1",
